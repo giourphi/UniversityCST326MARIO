@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Timers;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
 
 public class TimeCounter : MonoBehaviour
@@ -20,20 +21,22 @@ public class TimeCounter : MonoBehaviour
 
     public  float totaltime = 400f;
 
+    public float scorestart = 0f;
+    
     private Rigidbody rb; 
     // Update is called once per frame
     void Update()
     {
         totaltime -= Time.deltaTime;
         UpdateLeveltimer(totaltime);
-        
-     
+     //   scoreText.GetComponent<TextMeshProUGUI>().text = scorestart.ToString();
+
     }
 
     private void Reset()
     {
-        
-        
+        totaltime = 400f;
+        scoreText.GetComponent<TextMeshProUGUI>().text = scorestart.ToString();
     }
 
     public void UpdateLeveltimer(float totalseconds)
@@ -52,25 +55,21 @@ public class TimeCounter : MonoBehaviour
 
     }
 
-    public void UpdateScore()
-    {
-       // if (rb.GetComponent<RaycastDestroyblocks>())
-        {
-            if (brick.gameObject)
-            {
-                int x = 100;
-                scoreText.GetComponent<TextMeshProUGUI>().text = x.ToString()+scoreText.GetComponent<TextMeshProUGUI>().text;
-            }
+    public void UpdateScoreBrick()
+    { 
+        int x = 100;
+        scorestart += x;
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score " + scorestart.ToString();
 
-            if (rb.GetComponent<LevelParser>().brickPrefab)
-            {
-                int y = 10;
-                scoreText.GetComponent<TextMeshProUGUI>().text =
-                    y.ToString() + scoreText.GetComponent<TextMeshProUGUI>().text;
-            }
-            
-        }
     }
+
+    public void UpdateScoreQuestion()
+    {
+        int y = 10;
+        scorestart += y;
+        scoreText.GetComponent<TextMeshProUGUI>().text = "Score " + scorestart.ToString();
+    }
+    
 }
 
 
