@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Brick
   - Question
+  - EndOflevel
+  - OutofBounds
   layers:
   - Default
   - TransparentFX
